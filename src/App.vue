@@ -2,7 +2,7 @@
   <div id="app">
     <header>
       <div id="logo">
-        <h3>Viral Patel</h3>
+        <h3>VuePress</h3>
       </div>
       <div id="nav">
         <router-link to="/">Home</router-link> |
@@ -27,23 +27,40 @@
 header{
   display: inline-block;
   width: 100%;
-  margin-bottom: 20px;
+  padding-top: 30px;
+  padding-bottom: 30px;
   max-width: 768px;
 }
 
 #logo{
   float: left;
+
+  h3{
+    margin: 0;
+  }
 }
 
 #nav {
   float: right;
-  padding: 30px;
+  
   a {
     font-weight: bold;
     color: #2c3e50;
+
     &.router-link-exact-active {
       color: #42b983;
     }
   }
 }
 </style>
+
+<script>
+import api from './api';
+
+export default {
+  name: 'app',
+  beforeCreate: () => {
+    api.getPages( pages => pages.map(page => console.log(page.title.rendered) ))
+  }
+}
+</script>

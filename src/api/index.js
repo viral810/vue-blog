@@ -1,3 +1,6 @@
+import axios from 'axios'
+import _ from 'lodash'
+
 export default {
   getCategories (cb) {
     axios.get(window.SETTINGS.API_BASE_PATH + 'categories?sort=name&hide_empty=true&per_page=50')
@@ -31,7 +34,7 @@ export default {
   },
 
   getPosts (limit, cb) {
-    if (_.isEmpty(limit)) { let limit = 5 }
+    if (_.isEmpty(limit)) { limit = 5 }
     
     axios.get(window.SETTINGS.API_BASE_PATH + 'posts?per_page='+limit)
       .then(response => {
