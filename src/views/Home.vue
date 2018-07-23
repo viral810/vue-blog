@@ -5,13 +5,16 @@
     <hr />
     <ul>
       <li v-for="post in posts" :key="post.id">
-        <h2>{{ post.title.rendered }}</h2>
+        <h2>  <router-link :to="post.slug">{{ post.title.rendered }} </router-link></h2>
         <p v-html="post.excerpt.rendered"></p>
       </li>
     </ul>
   </div>
 </template>
 <style>
+h2 a{
+  text-decoration: none;
+}
 ul{
   list-style-type: none;
   text-align: left;
@@ -29,7 +32,7 @@ export default {
     posts: []
   }),
   beforeCreate() {
-    api.getPosts( null, posts => this.posts = posts)
+    api.getPosts( {}, posts => this.posts = posts)
   }
 }
 </script>

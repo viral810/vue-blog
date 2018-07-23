@@ -34,10 +34,9 @@ export default {
       })
   },
 
-  getPosts (limit, cb) {
-    if (_.isEmpty(limit)) { limit = 5 }
+  getPosts (params, cb) {
     
-    axios.get(window.SETTINGS.API_BASE_PATH + 'posts?per_page='+limit)
+    axios.get(window.SETTINGS.API_BASE_PATH + 'posts?per_page=5&'+$.param(params))
       .then(response => {
         cb(response.data)
       })
