@@ -1,5 +1,6 @@
 import axios from 'axios'
 import _ from 'lodash'
+import $ from 'jquery'
 
 export default {
   getCategories (cb) {
@@ -12,8 +13,8 @@ export default {
       })
   },
 
-  getPages (cb) {
-    axios.get(window.SETTINGS.API_BASE_PATH + 'pages?per_page=10')
+  getPages (params, cb) {
+    axios.get(window.SETTINGS.API_BASE_PATH + 'pages?per_page=10&'+$.param(params))
       .then(response => {
         cb(response.data)
       })

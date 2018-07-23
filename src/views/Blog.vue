@@ -1,5 +1,5 @@
 <template>
-  <div class="about" v-html="content">
+  <div class="blog" v-html="content">
   </div>
 </template>
 
@@ -7,7 +7,7 @@
 import api from '@/api';
 
 export default {
-  name: 'about',
+  name: 'blog',
   data: () => ({
     content: 'Loading...'
   }),

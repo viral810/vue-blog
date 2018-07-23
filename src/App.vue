@@ -5,7 +5,7 @@
         <h3>VuePress</h3>
       </div>
       <div id="nav" v-for="page in pages" :key="page.id">
-        <router-link v-bind:to="page.slug === 'home' ? '/' : page.slug">{{ page.title.rendered }}</router-link>
+        <router-link :to="{ name: page.slug }">{{ page.title.rendered }}</router-link>
       </div>
     </header>
     <router-view/>
@@ -63,7 +63,8 @@ export default {
     pages: []
   }),
   beforeCreate() {
-    api.getPages( pages => this.pages = pages)
+    let params = {};
+    api.getPages( params, pages => this.pages = pages)
   }
 }
 </script>
