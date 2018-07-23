@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <img src="../assets/logo.png">
-    <h1>Welcome to Your Vue.js powered Wordpress frontend App</h1>
+    <h1>Welcome to Vue.js powered Wordpress frontend App</h1>
     <hr />
     <ul>
       <li v-for="post in posts" :key="post.id">

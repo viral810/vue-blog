@@ -4,9 +4,11 @@
       <div id="logo">
         <h3>VuePress</h3>
       </div>
+      <keep-alive>
       <div id="nav">
         <router-link v-for="page in pages" :key="page.id" :to="{ name: page.slug }">{{ page.title.rendered }}</router-link>
       </div>
+      </keep-alive>
     </header>
     <router-view/>
   </div>
