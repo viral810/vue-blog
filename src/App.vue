@@ -4,9 +4,8 @@
       <div id="logo">
         <h3>VuePress</h3>
       </div>
-      <div id="nav">
-        <router-link to="/">Home</router-link> |
-        <router-link to="/about">About</router-link>
+      <div id="nav" v-for="page in pages" :key="page.id">
+        <router-link v-bind:to="page.slug === 'home' ? '/' : page.slug">{{ page.title.rendered }}</router-link>
       </div>
     </header>
     <router-view/>
@@ -46,6 +45,7 @@ header{
   a {
     font-weight: bold;
     color: #2c3e50;
+    padding-right: 10px;
 
     &.router-link-exact-active {
       color: #42b983;
@@ -59,8 +59,11 @@ import api from './api';
 
 export default {
   name: 'app',
-  beforeCreate: () => {
-    api.getPages( pages => pages.map(page => console.log(page.title.rendered) ))
+  data: () => ({
+    pages: []
+  }),
+  beforeCreate() {
+    api.getPages( pages => this.pages = pages)
   }
 }
 </script>
