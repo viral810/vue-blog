@@ -1,3 +1,7 @@
+window.SETTINGS = {
+  API_BASE_PATH: 'https://api.viralpatel.blog/wp-json/wp/v2/'
+}
+
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
