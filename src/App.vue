@@ -4,8 +4,8 @@
       <div id="logo">
         <h3>VuePress</h3>
       </div>
-      <div id="nav" v-for="page in pages" :key="page.id">
-        <router-link :to="{ name: page.slug }">{{ page.title.rendered }}</router-link>
+      <div id="nav">
+        <router-link v-for="page in pages" :key="page.id" :to="{ name: page.slug }">{{ page.title.rendered }}</router-link>
       </div>
     </header>
     <router-view/>
@@ -45,7 +45,11 @@ header{
   a {
     font-weight: bold;
     color: #2c3e50;
-    padding-right: 10px;
+    padding-right: 20px;
+
+    &:last-child{
+      padding-right: 0;
+    }
 
     &.router-link-exact-active {
       color: #42b983;
@@ -63,7 +67,7 @@ export default {
     pages: []
   }),
   beforeCreate() {
-    let params = {};
+    let params = { order: 'asc' };
     api.getPages( params, pages => this.pages = pages)
   }
 }
