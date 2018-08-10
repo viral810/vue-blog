@@ -2,11 +2,16 @@
   <div id="app">
     <header>
       <div id="logo">
-        <h3>VuePress</h3>
+        <h3><router-link to="/">VuePress</router-link></h3>
       </div>
       <keep-alive>
+      <ul id="categories__menu">
+        <li v-for="cat in categories" :key="cat.id">
+          {{ cat.name }}
+        </li>
+      </ul>
       <div id="nav">
-        <router-link v-for="page in pages" :key="page.id" :to="{ name: page.slug }">{{ page.title.rendered }}</router-link>
+        <router-link v-for="page in pages" :key="page.ID" :to="{ name: page.title.toLowerCase() }">{{ page.title }}</router-link>
       </div>
       </keep-alive>
     </header>
@@ -30,7 +35,8 @@ header{
   width: 100%;
   padding-top: 30px;
   padding-bottom: 30px;
-  max-width: 768px;
+  max-width: 1200px;
+  flex: 1 1 auto;
 }
 
 #logo{
@@ -38,6 +44,10 @@ header{
 
   h3{
     margin: 0;
+
+    a{
+      text-decoration: none;
+    }
   }
 }
 
@@ -58,6 +68,20 @@ header{
     }
   }
 }
+
+#categories__menu{
+  display: flex;
+  width: 100%;
+  align-items: flex-start;
+
+  li{
+    display: inline-block;
+    font-size: 14px;
+    font-weight: 500;
+    text-transform: uppercase;
+    color: rgba(0,0,0,.84);
+  }
+}
 </style>
 
 <script>
@@ -66,11 +90,12 @@ import api from './api';
 export default {
   name: 'app',
   data: () => ({
-    pages: []
+    pages: [],
+    categories: [],
   }),
   beforeCreate() {
-    let params = { order: 'asc' };
-    api.getPages( params, pages => this.pages = pages)
+    api.getMenu( 'primary', menu => this.pages = menu.items)
+    api.getCategories( categories => this.categories = categories)
   }
 }
 </script>

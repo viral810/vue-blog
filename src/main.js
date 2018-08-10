@@ -1,5 +1,6 @@
 window.SETTINGS = {
-  API_BASE_PATH: 'https://viralpatel.blog/wp-json/wp/v2/'
+  API_BASE_PATH: 'https://api.viralpatel.blog/wp-json/wp/v2/',
+  API_BASE_MENU: '  https://api.viralpatel.blog/wp-json/menus/v1/menus/'
 }
 try {
   window.axios = require('axios');

@@ -4,9 +4,19 @@ import $ from 'jquery'
 
 export default {
   getCategories (cb) {
-    axios.get(window.SETTINGS.API_BASE_PATH + 'categories?sort=name&hide_empty=true&per_page=50')
+    axios.get(window.SETTINGS.API_BASE_PATH + 'categories?sort=name&hide_empty=false&per_page=50')
       .then(response => {
         cb(response.data.filter(c => c.name !== "Uncategorized"))
+      })
+      .catch(e => {
+        cb(e)
+      })
+  },
+
+  getMenu (slug, cb) {
+    axios.get(window.SETTINGS.API_BASE_MENU + slug)
+      .then(response => {
+        cb(response.data)
       })
       .catch(e => {
         cb(e)
@@ -35,7 +45,6 @@ export default {
   },
 
   getPosts (params, cb) {
-    
     axios.get(window.SETTINGS.API_BASE_PATH + 'posts?per_page=5&'+$.param(params))
       .then(response => {
         cb(response.data)
