@@ -6,23 +6,25 @@ import Post from './views/Post.vue'
 
 Vue.use(Router)
 
-export default new Router({
-  mode: 'history',
-  routes: [
-    {
-      path: '/',
-      name: 'home',
-      component: Home
-    },
-    {
-      path: '/about',
-      name: 'about',
-      component: About
-    },
-    {
-      path: '/:slug',
-      name: 'post',
-      component: Post
-    }
-  ]
-})
+export function createRouter () {
+  return new Router({
+    mode: 'history',
+    routes: [
+      {
+        path: '/',
+        name: 'home',
+        component: Home
+      },
+      {
+        path: '/about',
+        name: 'about',
+        component: About
+      },
+      {
+        path: '/:slug',
+        name: 'post',
+        component: Post
+      }
+    ]
+  })
+}
